@@ -18,7 +18,7 @@ export default async function main(uiBuilder: UIBuilder, { t }) {
         let inputInfo = `开始周：${startWeek}，结束周：${endWeek}，全部数据：${JSON.stringify(values)}`;
         const selection = await bitable.base.getSelection();
         const table = await bitable.base.getTableById(selection?.tableId!);
-        let tableName = await getTableInfo(table);
+        let tableName = await table.getName();
         let tableInfo = `${tableName}`
 
         let reportExporter = new ReportExporter(table);
@@ -169,10 +169,6 @@ class ReportExporter {
         }
         return true;
     }
-}
-
-async function getTableInfo(table: ITable) {
-    return await table.getName();
 }
 
 
